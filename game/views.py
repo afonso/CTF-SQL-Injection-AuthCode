@@ -18,7 +18,7 @@ def submit_attempt(request):
 
 def _submit_test(post_data):
     auth_code = post_data['auth_code']
-    difficulty = post_data['difficulty'] #['Easy', 'Medium', 'Hard', 'Blind']
+    difficulty = post_data['difficulty'] #['Easy', 'Medium', 'Hard', 'Blind', 'Inferno']
 
     challenge_meta = {}
     #challenge_meta['query'] = "SELECT name,last_login from game_authcode WHERE code='{auth_code}'"
@@ -28,7 +28,9 @@ def _submit_test(post_data):
     if difficulty == 'Medium':
         challenge_meta['filters'] = [';', '"', '-', '\\', 'union', 'select', 'from', 'having', '&', '=', '|']
     if difficulty == 'Hard':
-        challenge_meta['filters'] = [';', "'", '"', "\\", " ", "and", "where", "limit", "null", "union", "select", "from", "having", "&", "=", "|", "-"] #Consider also adding "/", "or"
+        challenge_meta['filters'] = [';', "'", '"', "\\", " ", "and", "where", "limit", "null", "union", "select", "from", "having", "&", "=", "|", "-"]
+    if difficulty == 'Inferno':
+        challenge_meta['filters'] = [';', "'", '"', "\\", " ", "and", "where", "limit", "null", "union", "select", "from", "having", "&", "=", "|", "-", "/", "or"]
 
     for filt in challenge_meta['filters']:
         auth_code = auth_code.replace(filt, '')
