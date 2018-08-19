@@ -30,7 +30,7 @@ def _submit_test(post_data):
     if difficulty == 'Hard':
         challenge_meta['filters'] = [';', "'", '"', "\\", " ", "and", "where", "limit", "null", "union", "select", "from", "having", "&", "=", "|", "-"]
     if difficulty == 'Inferno':
-        challenge_meta['filters'] = [';', "'", '"', "\\", " ", "and", "where", "limit", "null", "union", "select", "from", "having", "&", "=", "|", "-", "/", "or"]
+        challenge_meta['filters'] = [';', "'", '"', "\\", " ", "and", "where", "limit", "null", "union", "select", "from", "having", "&", "=", "|", "-", "/", "or", "(", "*"]
 
     for filt in challenge_meta['filters']:
         auth_code = auth_code.replace(filt, '')
